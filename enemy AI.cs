@@ -11,18 +11,18 @@ public class enemyAI : MonoBehaviour
    Vector3 defaultPosition = new Vector3();
    public Transform player;
   
-   public float spawnInterval = 10f; 
+   public float spawnInterval = 10f;   //ゾンビが出てくるスパン
    public float spawnRadiusMin = 5f;    // 最小スポーン距離
-   public float spawnRadiusMax = 10f;
-   public Slider hpSlider;
-   private const int maxHP = 100;
+   public float spawnRadiusMax = 10f;　　//最大スポーン距離
+   public Slider hpSlider;　　// HPのゲージ
+   private const int maxHP = 100;　//100のHP
    private int currentHP;  //現在のHP
    public float walkspeed = 1.2f; //ゾンビが歩くスピード
    public float startspeed = 3.0f; //ゾンビが増殖する最初のタイミング
-   private float currentInterval;
-   public float spawnDecrease = 0.05f;
-   public float delta = 0; //
-   public AudioSource audioSource;
+   private float currentInterval;　
+   public float spawnDecrease = 0.05f;　//10秒ごとにスポーンの時間を短くする秒数
+   public float delta = 0; //　　
+   public AudioSource audioSource;　//ゾンビの声
 
    void Start()
    {
@@ -39,9 +39,9 @@ public class enemyAI : MonoBehaviour
    void Update()
    { transform.rotation = Camera.main.transform.rotation;
 
-    Vector3 direction = player.position - transform.position;
+    Vector3 direction = player.position - transform.position; //ゾンビがplayerに近づいてくる
     direction.Normalize();
-    transform.position += direction * walkspeed * Time.deltaTime;
+    transform.position += direction * walkspeed * Time.deltaTime;　//だんだん早くなってくる
 
     transform.LookAt(player.transform.position);
 
@@ -52,12 +52,7 @@ public class enemyAI : MonoBehaviour
 
    void SpawnZombie()
     {
-        float angle = Random.Range(-180f, 180f);
-        /*float distance = Random.Range(spawnRadiusMin, spawnRadiusMax);
-
-        Vector3 spawnDir = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-        Vector3 spawnPos = player.position + spawnDir * distance;
-        spawnPos.y = player.position.y;*/
+        float angle = Random.Range(-180f, 180f);　　　　　　　　　　//360度からゾンビが迫ってくる
 
         Quaternion rotation = Quaternion.Euler(0, angle, 0) * player.rotation;
 
