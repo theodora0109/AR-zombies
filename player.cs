@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 3;
-    private int currentHealth;
-	public GameObject gameoverCanvas;
+    public int maxHealth = 3;　//プレイヤーの体力
+    private int currentHealth;　//現在の体力
+	public GameObject gameoverCanvas;  
 	public Image[] hearts;
   
 
     void Start()
     {
         currentHealth = maxHealth;
-		gameoverCanvas.SetActive(false);
+		gameoverCanvas.SetActive(false); 
 		UpdateHearts();
     }
 
@@ -52,18 +52,6 @@ public class PlayerHealth : MonoBehaviour
         for (int i = 0; i < hearts.Length; i++)
         {
             hearts[i].enabled = i < currentHealth;
-        }
-    }
-     void StopAllZombiesGroan()
-    {
-        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Whatnot");
-        foreach (var z in zombies)
-        {
-            AudioSource a = z.GetComponent<AudioSource>();
-            if (a != null && a.isPlaying)
-            {
-                a.Stop();
-            }
         }
     }
 }
