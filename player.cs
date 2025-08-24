@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("Player hit! Remaining HP: " + currentHealth);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0) //ハートが0になったらゲームオーバー
         {
             Die();
            
@@ -43,11 +43,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-      if (collision.gameObject.tag == "Whatnot"){
+      if (collision.gameObject.tag == "Whatnot"){　
 			TakeDamage(1);
 		}
     }
-	 void UpdateHearts()
+	 void UpdateHearts() // ハートの残機
     {
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -55,3 +55,4 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 }
+
